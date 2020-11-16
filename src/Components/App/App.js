@@ -11,7 +11,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             searchResults: window.localStorage.getItem('searchResults') ? JSON.parse(window.localStorage.getItem('searchResults')) : [],
-            playlistName: window.localStorage.getItem('playlistName', name) ? window.localStorage.getItem('playlistName', name) : 'New Playlist',
+            playlistName: window.localStorage.getItem('playlistName') ? window.localStorage.getItem('playlistName') : 'New Playlist',
             playlistTracks: window.localStorage.getItem('playlistTracks') ? JSON.parse(window.localStorage.getItem('playlistTracks')) : []
         };
 
