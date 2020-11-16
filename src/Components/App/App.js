@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchResults: [],
+            searchResults: window.localStorage.getItem('searchResults') ? window.localStorage.getItem('searchResults').json() : [],
             playlistName: 'New Playlist',
             playlistTracks: []
         };
@@ -49,7 +49,11 @@ class App extends React.Component {
     }
 
     search(term) {
-        Spotify.search(term).then(searchResults => this.setState({searchResults: searchResults}));
+        Spotify.search(term).then(searchResults => {
+            const resultsJson = {searchResults: searchResults};
+            window.localStorage.setItem('searchResults', JSON.stringify(resultsJson));
+            this.setState({searchResults: searchResults})
+        });
     }
 
     render() {

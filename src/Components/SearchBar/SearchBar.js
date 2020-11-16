@@ -6,7 +6,7 @@ export class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm: ""
+            searchTerm: window.localStorage.getItem('searchTerm') ? window.localStorage.getItem('searchTerm') : ''
         }
 
         this.search = this.search.bind(this);
@@ -18,7 +18,8 @@ export class SearchBar extends React.Component {
     }
 
     handleTermChange(e) {
-        this.setState({searchTerm: e.target.value});
+        const term = window.localStorage.setItem('searchTerm', e.target.value);
+        this.setState({searchTerm: term});
     }
 
     render() {
