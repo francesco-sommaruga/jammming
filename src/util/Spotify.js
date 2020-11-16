@@ -1,5 +1,5 @@
 const clientID = 'c88e7dea15a74f6c9dc9572617dc8126';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'https://jammming.francescosommaruga.com/';
 
 const Spotify = {
     
