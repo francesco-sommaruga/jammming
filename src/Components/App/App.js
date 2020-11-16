@@ -50,8 +50,7 @@ class App extends React.Component {
 
     search(term) {
         Spotify.search(term).then(searchResults => {
-            const resultsJson = {searchResults: searchResults};
-            window.localStorage.setItem('searchResults', JSON.stringify(resultsJson));
+            window.localStorage.setItem('searchResults', JSON.stringify(searchResults));
             this.setState({searchResults: searchResults})
         });
     }
