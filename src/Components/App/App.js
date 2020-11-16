@@ -11,7 +11,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             searchResults: window.localStorage.getItem('searchResults') ? JSON.parse(window.localStorage.getItem('searchResults')) : [],
-            playlistName: 'New Playlist',
+            playlistName: window.localStorage.getItem('playlistName', name) ? window.localStorage.getItem('playlistName', name) : 'New Playlist',
             playlistTracks: window.localStorage.getItem('playlistTracks') ? JSON.parse(window.localStorage.getItem('playlistTracks')) : []
         };
 
@@ -33,10 +33,12 @@ class App extends React.Component {
 
     removeTrack(track) {
         let savedTracks = this.state.playlistTracks.filter(savedTrack => savedTrack.id !== track.id);
+        window.localStorage.setItem('playlistTracks', JSON.stringify(savedTracks));
         this.setState({playlistTracks: savedTracks});
     }
 
     updatePlaylistName(name) {
+        window.localStorage.setItem('playlistName', name);
         this.setState({playlistName: name});
     }
 
