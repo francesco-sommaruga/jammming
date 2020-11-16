@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchResults: window.localStorage.getItem('searchResults') ? window.localStorage.getItem('searchResults').json() : [],
+            searchResults: window.localStorage.getItem('searchResults') ? JSON.parse(window.localStorage.getItem('searchResults')) : [],
             playlistName: 'New Playlist',
             playlistTracks: []
         };
