@@ -18,8 +18,8 @@ export class SearchBar extends React.Component {
     }
 
     handleTermChange(e) {
-        const term = window.localStorage.setItem('searchTerm', e.target.value);
-        this.setState({searchTerm: term});
+        window.localStorage.setItem('searchTerm', e.target.value);
+        this.setState({searchTerm: e.target.value});
     }
 
     render() {
