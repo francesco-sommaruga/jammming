@@ -12,7 +12,7 @@ class App extends React.Component {
         this.state = {
             searchResults: window.localStorage.getItem('searchResults') ? JSON.parse(window.localStorage.getItem('searchResults')) : [],
             playlistName: 'New Playlist',
-            playlistTracks: []
+            playlistTracks: window.localStorage.getItem('playlistTracks') ? JSON.parse(window.localStorage.getItem('playlistTracks')) : []
         };
 
         this.addTrack = this.addTrack.bind(this);
@@ -27,6 +27,7 @@ class App extends React.Component {
 
         let savedTracks = this.state.playlistTracks;
         savedTracks.push(track);
+        window.localStorage.setItem('playlistTracks', JSON.stringify(savedTracks));
         this.setState({playlistTracks: savedTracks});
     }
 
@@ -42,6 +43,7 @@ class App extends React.Component {
     savePlaylist() {
         const trackURIs = this.state.playlistTracks.map(track => `spotify:track:${track.id}`);
         Spotify.savePlaylist(this.state.playlistName, trackURIs);
+        window.localStorage.setItem('playlistTracks', JSON.stringify([]));
         this.setState({
             playlistName: 'New Playlist',
             playlistTracks: []
